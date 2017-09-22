@@ -1,0 +1,91 @@
+---
+title: Soybean Deliveries
+author: Pablo Figueroa
+date: '2017-09-19'
+slug: soybean-deliveries
+categories:
+  - Soybeans
+tags:
+  - Crush
+  - Deliveries
+  - Trucks
+---
+
+```{r,include=FALSE}
+library(vtreat)
+library(ISLR)
+library(readxl)
+library(forecast)
+library(ggplot2)
+library(xlsx)
+library(xts)
+library(leaps)
+library(MASS)
+library(glmulti)
+library(HH)
+library(glmnet)
+library(pls)
+library(broom)
+library(tidyr)
+library(dplyr)
+library(data.table)
+```
+
+#Summary
+Below, another attempt to model crush using **Subset Selection, Shrinkage and Dimension Reduction** to fit different models using a determined set of variables. 
+This models were selected based on R-adjusted and Cp and then Cross-Validated to have an idea of the prediction power of the models and expected errors.
+
+## Ideas for the future/line of work derived from this:
+
+Models could be improved if a series of deliveries was considered, but we don´t have this estimate before official crush is published. From this we can derive the importance of having a goo estimate of deliveries, based not only on truck arrivals but farmer selling to estimate both crush and physical stocks.
+Im not adding a variable to acount for working days of each month. Indirectly this may be accounted through the month as a seasonal component (some months are includded in the best model which has 13 variables)
+would be good to include a variable to account for loading pace during the first days of the following month. this can be included though SBM_fwd exports but we can add only loded volumnes during 10/15 days. Another possibility is adding loaded % of total exports during the first 10/15 days.
+
+#Conclusion:
+Best model found is the one includding xx variables yielding and error or xx.
+
+Data Subset includidng variables for which we have the data before official estimate is pusblished
+
+##Description of the data set:
+
+
+```{r, include=F,warning=FALSE,echo=FALSE}
+# Load Data
+data<-read_excel("C:/Users/figuerpa/ShareFile/Shared With Me/OFFICE/ARGENTINA/COMMERCIAL DATA/CRUSH/R_Project/Crush_Model/Data.xlsx","Data4")
+
+#Set Parameters
+last_col=ncol(data)
+
+# Create XTS and separate data
+newdata<-data[,1:last_col-1]
+
+data_train<-na.omit(subset(data,data$Estimate=="No"))
+
+data_train<-data_train[,1:last_col-1]
+
+data_test<-subset(data,data$Estimate=="Yes")
+data_ts<-ts(data,start = c(2001),frequency = 1)[,1:last_col]
+train_ts<-ts(data_train,start = c(2009,4),frequency = 12)[,3:last_col-1]
+#test_ts<-ts(data_test,start = c(2018,5),frequency = 1)[,1:last_col-1]
+```
+
+
+
+
+
+#Exploratory Analysis and graphs
+
+```{r, echo=FALSE}
+
+data_train_mut<-mutate(data_train,Month=months(data_train$Date))
+data_train_mut<-mutate(data_train_mut,Year=year(data_train$Date))
+
+par(mfrow=c(1,3))
+ggplot(data=data_train_mut,aes(x=Truck_Crushers,y=Crush,color=Month))+geom_point()+geom_jitter()+geom_smooth(method = "loess", aes(group=1))
+
+ggplot(data=data_train_mut,aes(x=Truck_Crushers,y=Crush,color=factor(Year)))+geom_point(alpha=0.4)+
+  geom_smooth(method = "lm",se=0)+geom_smooth(aes(group=1),method = "lm",se=F,linetype=2,col="red")
+
+#ggplot(data=data_train_mut,aes(x=Truck_Crushers,y=Crush,color=factor(Year)))+ geom_smooth(method = "lm",se=0)+geom_smooth(aes(group=1),method = "lm",se=F,linetype=2,col="red")
+
+```

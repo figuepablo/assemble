@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Crush on My Awesome Website</title>
+    <link>/tags/crush/</link>
+    <description>Recent content in Crush on My Awesome Website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 Sep 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/crush/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Soybean Deliveries</title>
+      <link>/oilseeds/soybean-deliveries/</link>
+      <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/oilseeds/soybean-deliveries/</guid>
+      <description>SummaryBelow, another attempt to model crush using Subset Selection, Shrinkage and Dimension Reduction to fit different models using a determined set of variables. This models were selected based on R-adjusted and Cp and then Cross-Validated to have an idea of the prediction power of the models and expected errors.
+Ideas for the future/line of work derived from this:Models could be improved if a series of deliveries was considered, but we don´t have this estimate before official crush is published.</description>
+    </item>
+    
+  </channel>
+</rss>

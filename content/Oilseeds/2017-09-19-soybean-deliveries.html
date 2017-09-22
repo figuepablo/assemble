@@ -1,0 +1,35 @@
+---
+title: Soybean Deliveries
+author: Pablo Figueroa
+date: '2017-09-19'
+slug: soybean-deliveries
+categories:
+  - Soybeans
+tags:
+  - Crush
+  - Deliveries
+  - Trucks
+---
+
+
+
+<div id="summary" class="section level1">
+<h1>Summary</h1>
+<p>Below, another attempt to model crush using <strong>Subset Selection, Shrinkage and Dimension Reduction</strong> to fit different models using a determined set of variables. This models were selected based on R-adjusted and Cp and then Cross-Validated to have an idea of the prediction power of the models and expected errors.</p>
+<div id="ideas-for-the-futureline-of-work-derived-from-this" class="section level2">
+<h2>Ideas for the future/line of work derived from this:</h2>
+<p>Models could be improved if a series of deliveries was considered, but we don´t have this estimate before official crush is published. From this we can derive the importance of having a goo estimate of deliveries, based not only on truck arrivals but farmer selling to estimate both crush and physical stocks. Im not adding a variable to acount for working days of each month. Indirectly this may be accounted through the month as a seasonal component (some months are includded in the best model which has 13 variables) would be good to include a variable to account for loading pace during the first days of the following month. this can be included though SBM_fwd exports but we can add only loded volumnes during 10/15 days. Another possibility is adding loaded % of total exports during the first 10/15 days.</p>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion:</h1>
+<p>Best model found is the one includding xx variables yielding and error or xx.</p>
+<p>Data Subset includidng variables for which we have the data before official estimate is pusblished</p>
+<div id="description-of-the-data-set" class="section level2">
+<h2>Description of the data set:</h2>
+</div>
+</div>
+<div id="exploratory-analysis-and-graphs" class="section level1">
+<h1>Exploratory Analysis and graphs</h1>
+<p><img src="/Oilseeds/2017-09-19-soybean-deliveries_files/figure-html/unnamed-chunk-3-1.png" width="672" /><img src="/Oilseeds/2017-09-19-soybean-deliveries_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+</div>
